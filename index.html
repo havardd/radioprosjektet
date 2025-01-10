@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="https://no.wikipedia.org/wiki/Fil:NRK_P13_rgb.png" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+    </style>
+    <link rel="stylesheet" href="./style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <div class="content">
+      <h1>NRK P13 Live</h1>
+      <h3>Program:</h3>
+      <div id="program-title"></div> <!-- Add this line -->
+      <div id="content"></div>
+      <div id="last-updated"></div>
+      <div id="next-update"></div>
+      <div id="description-countdown"></div>
+      <div id="title-countdown"></div>
+      <div id="image-countdown"></div>
+    </div>
+    <audio id="background-audio" controls autoplay>
+      <source src="https://lyd.nrk.no/icecast/aac/low/s0w7hwn47m/p13" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <script src="script.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const audioElement = document.getElementById('background-audio');
+      // Try to play audio when the page is loaded
+      audioElement.play().catch(error => {
+        // Handle autoplay error
+        console.log("Autoplay was prevented. Audio playback will start once user interacts with the page.");
+      });
+
+      // Listening for user interaction
+      document.addEventListener('click', () => {
+        if (audioElement.paused) {
+          audioElement.play().catch(error => {
+            console.log("Autoplay error:", error);
+          });
+        }
+      });
+    });
+    </script>
+  </body>
+</html>
